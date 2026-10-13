@@ -1,0 +1,27 @@
+name: 🚗 Weekend Drive Course
+
+on:
+  schedule:
+    # 매주 금요일 19:00 KST (= 금요일 10:00 UTC)
+    - cron: '0 10 * * 5'
+  workflow_dispatch:
+
+jobs:
+  recommend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+
+      - name: 주말 드라이브 코스 추천 발송
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
+        run: python main.py
