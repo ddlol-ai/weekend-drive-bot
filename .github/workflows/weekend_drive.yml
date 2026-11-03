@@ -1,9 +1,10 @@
 name: 🚗 Weekend Drive Course
 
 on:
-  schedule:
-    # 매주 금요일 19:00 KST (= 금요일 10:00 UTC)
-    - cron: '0 10 * * 5'
+  # schedule:
+  #   # 매주 금요일 19:00 KST (= 금요일 10:00 UTC)
+  #   # [이관 완료] GCP Cloud Scheduler (sched-weekend-drive) 및 Cloud Run Job (job-weekend-drive)으로 실행
+  #   - cron: '0 10 * * 5'
   workflow_dispatch:
 
 jobs:
